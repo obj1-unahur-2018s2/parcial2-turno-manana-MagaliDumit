@@ -1,0 +1,98 @@
+import socios.*
+import actividades.*
+
+
+describe "group of tests" {
+	var roque = new Socios(edad= 12,maximoActividades =2,actividadesRealizo = #{},idiomas=#{"español", "frances" }) 
+	var ana = new Socios(edad = 20 ,maximoActividades =3,actividadesRealizo = #{},idiomas=#{"español","portugues"})
+	var playa1 = new ViajesPlaya(largoPlaya = 1000, idiomas =#{"español"} , sirveBroncearse= true)
+	var playa2 = new ViajesPlaya(largoPlaya =2000, idiomas =#{"español"}, sirveBroncearse= true)
+	var gimnasia = new ClasesGimnasia()
+	fixture{
+		playa1.duracion() 
+		playa2.duracion()
+		gimnasia.duracion()
+		gimnasia.implicaEsfuerzo()
+		gimnasia.sirveBroncearse()
+		gimnasia.idiomas()
+		roque.realizarActividad(playa1)
+		roque.realizarActividad(playa2)
+		roque.adorarSol()
+		roque.actividadesEsforzadas()
+		ana.adorarSol()
+		ana.actividadesEsforzadas()
+		ana.realizarActividad(playa1)
+		ana.realizarActividad(playa2)
+		ana.realizarActividad(gimnasia)
+		ana.actividadesEsforzadas()
+		ana.adorarSol()
+		
+		
+	}
+	
+	test "testDuracionPlaya1"{
+		assert.equals(2,playa1.duracion()) 
+	}
+	test "testDuracionPlaya2"{
+		
+		assert.equals(4,playa2.duracion())
+	}
+	
+	test "testRealizarActividad"{
+		roque.realizarActividad(gimnasia)
+		
+		assert.equals(#{playa1,playa2},roque.actividadesRealizo()) 
+		
+		assert.throwsException({" ya supero su capacidad maxima de actividades"})
+		
+	} 
+	test "testAdoraElSol" {
+  	
+		assert.that(true) 
+   
+	}
+	
+	test "testActividadesEsforzadas"{
+		
+		assert.equals(#{playa2}, roque.actividadesEsforzadas())
+	} 
+	
+	test "testAdoraElSolAna" {
+  	
+		assert.that(true)
+   
+	}
+	
+	test "testActividadesEsforzadasAna"{
+		
+		assert.equals(#{gimnasia, playa2}, ana.actividadesEsforzadas())
+	} 
+	test "testAgrgarGimnasiaAna"{ 
+		 
+		assert.equals( #{gimnasia,playa1,playa2},ana.actividadesRealizo())
+		
+		
+		assert.equals(#{playa2,gimnasia}, ana.actividadesEsforzadas())
+		
+		
+		assert.notThat(false)
+		
+	} 
+
+	
+	test "testB" {
+       
+        assert.equals(1,gimnasia.duracion())
+        
+        
+		assert.that(true)
+
+		
+		assert.notThat(false)
+		
+		
+		assert.equals(#{"español"},gimnasia.idiomas())
+	}	
+	  }
+	  
+ 

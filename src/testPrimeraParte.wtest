@@ -1,0 +1,72 @@
+import socios.*
+import actividades.*
+
+describe "group of tests" {
+var viaje1 = new ViajesPlaya( idiomas= #{ "español","ingles", "portugues"},largoPlaya=1200,sirveBroncearse=true)
+var viaje2 = new ExcurcionCiudad(atracciones= 5,sirveBroncearse= false,idiomas= #{ "español","ingles", "portugues"})  
+var viaje3 = new ExcurcionCiudadTropical(atracciones= 4,sirveBroncearse= false,idiomas= #{ "español","ingles", "portugues"})  
+var viaje4 = new SalidaTrekking(kmSenderos= 150, diasSol = 150,idiomas= #{ "español","ingles", "portugues"})
+var gimnasia = new  ClasesGimnasia() 
+ 
+	test "testX" {
+        viaje1.duracion() 
+        assert.equals(2.4,viaje1.duracion())
+        
+        viaje1.implicaEsfuerzo()
+		assert.that(true)
+
+		viaje1.esInteresante()
+		assert.that(true)
+	}
+	
+	test "testY" {
+        viaje2.duracion()
+        assert.equals(2.5,viaje2.duracion())
+        
+        viaje2.implicaEsfuerzo()
+		assert.that(true)
+
+		viaje2.esInteresante()
+		assert.that(true)
+	}
+	
+	test "testZ" {
+        viaje3.duracion()
+        assert.equals(3,viaje3.duracion())
+        
+        viaje3.implicaEsfuerzo()
+		assert.that(true)
+
+		viaje3.esInteresante()
+		assert.that(true)
+	}
+	
+	test "testA" {
+        viaje4.duracion()
+        assert.equals(3,viaje4.duracion())
+        
+        viaje4.implicaEsfuerzo()
+		assert.that(true)
+
+		viaje4.esInteresante()
+		assert.that(true)
+		
+		viaje4.sirveBroncearse()
+		assert.that(true)
+	}
+	
+test "testB" {
+        gimnasia.duracion()
+        assert.equals(1,gimnasia.duracion())
+        
+        gimnasia.implicaEsfuerzo()
+		assert.that(true)
+
+		gimnasia.sirveBroncearse()
+		assert.notThat(false)
+		
+		gimnasia.idiomas()
+		assert.equals(#{"español"},gimnasia.idiomas())
+	}	
+	
+}
